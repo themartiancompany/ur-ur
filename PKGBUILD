@@ -135,6 +135,10 @@ fi
 checkdepends=(
   'shellcheck'
 )
+_ur_docs_optdepends=(
+  "${_pkg}-docs:"
+    "ur documentation and manuals."
+)
 _pub_optdepends=(
   "pub:"
     "for publishing applications"
@@ -142,6 +146,7 @@ _pub_optdepends=(
 )
 optdepends=(
   "${_pub_optdepends[*]}"
+  "${_ur_docs_optdepends[*]}"
 )
 _tag_name="commit"
 _tag="${_commit}"
@@ -231,6 +236,14 @@ build() {
 package_ur-contracts() {
   local \
     _make_opts=()
+  depends=()
+  _ur_optdepends=(
+   "ur:"
+     "reference Ur implementation."
+  )
+  optdepends=(
+    "${_ur_optdepends[*]}"
+  )
   _make_opts=(
     DESTDIR="${pkgdir}"
     PREFIX='/usr'
@@ -284,7 +297,17 @@ package_ur() {
 
 package_ur-docs() {
   local \
-    _make_opts=()
+    _make_opts=() \
+    _ur_optdepends=()
+  depends=()
+  _ur_optdepends=(
+   "ur:"
+     "the package this documentation"
+     "package pertains to."
+  )
+  optdepends=(
+    "${_ur_optdepends[*]}"
+  )
   _make_opts=(
     DESTDIR="${pkgdir}"
     PREFIX='/usr'
