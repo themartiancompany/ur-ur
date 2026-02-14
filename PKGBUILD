@@ -235,10 +235,11 @@ build() {
 
 package_ur-contracts() {
   local \
-    _make_opts=()
+    _make_opts=() \
+    _ur_optdepends=()
   depends=()
-  _ur_optdepends=(
-   "ur:"
+  _ur_optdepends+=(
+   "${_pkg}:"
      "reference Ur implementation."
   )
   optdepends=(
@@ -300,8 +301,8 @@ package_ur-docs() {
     _make_opts=() \
     _ur_optdepends=()
   depends=()
-  _ur_optdepends=(
-   "ur:"
+  _ur_optdepends+=(
+   "${_pkg}:"
      "the package this documentation"
      "package pertains to."
   )
