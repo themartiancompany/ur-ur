@@ -33,7 +33,7 @@
 _os="$( \
   uname \
     -o)"
-_evmfs_available="$( \
+_evmfs_available="$(
   command \
     -v \
     "evmfs" || \
